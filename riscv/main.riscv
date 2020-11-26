@@ -1,0 +1,13 @@
+.data
+
+hello_world:
+.string "Hello, World!"
+
+.text
+
+.globl main
+main:
+la a1 hello_world
+call print_string
+
+call exit

@@ -85,7 +85,7 @@ public class Main {
     
     public static void main(String[] args) {
         init();
-        List<String> stringPrograms = Arrays.stream(args).peek(System.out::println).map(Paths::get).map(Main::readAllBytes).map(String::new).collect(Collectors.toList());
+        List<String> stringPrograms = Arrays.stream(args).map(Paths::get).map(Main::readAllBytes).map(String::new).collect(Collectors.toList());
         List<Program> programs = stringPrograms.stream().map(Assembler.INSTANCE::assemble).peek(Main::checkForErrors).map(AssemblerOutput::getProg).collect(Collectors.toList());
         LinkedProgram linkedProgram = Linker.INSTANCE.link(programs);
         run(linkedProgram);
@@ -94,7 +94,6 @@ public class Main {
     private static void run(LinkedProgram program) {
         Simulator simulator = new Simulator(program);
         simulator.run();
-//        System.out.println(simulator.getReg(17));
     }
     
 }

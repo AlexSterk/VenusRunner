@@ -1,0 +1,19 @@
+.equiv @ecall_print_int 1
+.equiv @ecall_print_string 4
+.equiv @ecall_read_line_buffer 8
+.equiv @ecall_sbrk 9
+.equiv @ecall_exit 10
+.equiv @ecall_print_char 11
+.equiv @ecall_exit_with_code 17
+.equiv @ecall_fill_line_buffer 18
+
+.globl exit
+exit:
+li a0 @ecall_exit
+ecall
+
+.globl print_string
+print_string:
+li a0 @ecall_print_string
+ecall
+ret
